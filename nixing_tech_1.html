@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>坭兴陶核心技术</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Serif SC', serif; background: #faf9f7; color: #333; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 60px 30px; }
+        
+        .title-section { margin-bottom: 50px; }
+        .main-title { font-size: 42px; font-weight: 700; color: #C4A35A; margin-bottom: 10px; }
+        .sub-title { font-size: 24px; color: #5D4E37; font-weight: 600; }
+        
+        .tech-section { margin-bottom: 60px; }
+        .tech-title { font-size: 20px; font-weight: 700; color: #C4A35A; margin-bottom: 15px; display: flex; align-items: center; }
+        .tech-title::before { content: ''; display: inline-block; width: 4px; height: 20px; background: #C4A35A; margin-right: 10px; }
+        .tech-desc { color: #666; font-size: 15px; margin-bottom: 25px; line-height: 1.9; }
+        
+        .tech-card { background: white; border-radius: 12px; padding: 35px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .tech-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; }
+        
+        .flow-list { display: flex; flex-direction: column; gap: 15px; }
+        .flow-item { display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f6f0; border-radius: 8px; transition: all 0.3s; }
+        .flow-item:hover { transform: translateX(5px); background: #f0ebe0; }
+        .flow-icon { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #C4A35A, #8B7355); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 18px; flex-shrink: 0; }
+        .flow-content { flex: 1; }
+        .flow-label { font-size: 14px; color: #999; margin-bottom: 3px; }
+        .flow-name { font-size: 16px; font-weight: 600; color: #5D4E37; }
+        
+        .diagram-box { background: #faf9f7; border-radius: 10px; padding: 30px; border: 2px dashed #C4A35A; }
+        .diagram-title { text-align: center; font-size: 16px; font-weight: 600; color: #5D4E37; margin-bottom: 25px; }
+        .diagram-flow { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .diagram-step { padding: 12px 25px; background: white; border: 2px solid #C4A35A; border-radius: 25px; font-size: 14px; font-weight: 600; color: #5D4E37; }
+        .diagram-arrow { color: #C4A35A; font-size: 20px; }
+        .curve-chart { height: 180px; background: linear-gradient(to right, #5D4E37, #C4A35A, #C46210); border-radius: 8px; margin-top: 20px; position: relative; overflow: hidden; }
+        .curve-chart::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+        .chart-labels { display: flex; justify-content: space-between; margin-top: 10px; font-size: 12px; color: #999; }
+        .chart-label { text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title-section">
+            <div class="main-title">Core Technology</div>
+            <div class="sub-title">核心技术</div>
+        </div>
+        
+        <div class="tech-section">
+            <div class="tech-title">核心技术一：双料混炼工艺，骨肉相融，千年传承</div>
+            <div class="tech-desc">
+                坭兴陶取料于广西钦州钦江两岸特有陶土，将东泥（软质黏土，如肉般细腻）与西泥（硬质陶土，如骨般坚韧）按6:4或4:6的比例精准配比，
+                历经淘洗、揉磨、陈腐等多道工序，使两种泥料达到"骨肉相融"的境界，为后续成型与烧制奠定坚实基础。
+            </div>
+            
+            <div class="tech-card">
+                <div class="tech-grid">
+                    <div class="flow-list">
+                        <div class="flow-item">
+                            <div class="flow-icon">1</div>
+                            <div class="flow-content">
+                                <div class="flow-label">选料阶段</div>
+                                <div class="flow-name">东泥开采</div>
+                            </div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="flow-icon">2</div>
+                            <div class="flow-content">
+                                <div class="flow-label">选料阶段</div>
+                                <div class="flow-name">西泥风化</div>
+                            </div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="flow-icon">3</div>
+                            <div class="flow-content">
+                                <div class="flow-label">混炼阶段</div>
+                                <div class="flow-name">配比混合</div>
+                            </div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="flow-icon">4</div>
+                            <div class="flow-content">
+                                <div class="flow-label">混炼阶段</div>
+                                <div class="flow-name">揉磨陈腐</div>
+                            </div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="flow-icon">5</div>
+                            <div class="flow-content">
+                                <div class="flow-label">成型阶段</div>
+                                <div class="flow-name">真空练泥</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="diagram-box">
+                        <div class="diagram-title">双料混炼工艺流程示意图</div>
+                        <div class="diagram-flow">
+                            <div class="diagram-step">东泥</div>
+                            <div class="diagram-arrow">→</div>
+                            <div class="diagram-step">配比混合</div>
+                            <div class="diagram-arrow">→</div>
+                            <div class="diagram-step">西泥</div>
+                        </div>
+                        <div class="curve-chart"></div>
+                        <div class="chart-labels">
+                            <div class="chart-label">60%<br>东泥（肉）</div>
+                            <div class="chart-label">40%<br>西泥（骨）</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tech-section">
+            <div class="tech-title">核心技术二：自然素烧工艺，无釉无彩，窑变天成</div>
+            <div class="tech-desc">
+                素烧是坭兴陶区别于其他陶瓷的核心特征，不施釉料、不添彩绘，仅靠陶土本身在1150℃-1250℃高温下的自然反应，
+                幻化出古铜、墨绿、紫红、天斑、虎纹等斑斓色彩，每一件都独一无二，堪称"火的艺术"。
+            </div>
+            
+            <div class="tech-card">
+                <div class="tech-grid">
+                    <div class="flow-list">
+                        <div class="flow-item">
+                            <div class="flow-icon">1</div>
+                            <div class="flow-content">
+                                <div class="flow-label">素烧准备</div>
+                                <div class="flow-name">素坯入窑</div>
+                            </div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="flow-icon">2</div>
+                            <div class="flow-content">
+                                <div class="flow-label">升温阶段</div>
+                                <div class="flow-name">梯度升温</div>
+                            </div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="flow-icon">3</div>
+                            <div class="flow-content">
+                                <div class="flow-label">高温保温</div>
+                                <div class="flow-name">1200℃恒温</div>
+                            </div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="flow-icon">4</div>
+                            <div class="flow-content">
+                                <div class="flow-label">窑变发生</div>
+                                <div class="flow-name">矿物质反应</div>
+                            </div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="flow-icon">5</div>
+                            <div class="flow-content">
+                                <div class="flow-label">出窑打磨</div>
+                                <div class="flow-name">抛光成品</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="diagram-box">
+                        <div class="diagram-title">素烧温度与窑变关系曲线</div>
+                        <div class="diagram-flow">
+                            <div class="diagram-step">1150℃</div>
+                            <div class="diagram-arrow">→</div>
+                            <div class="diagram-step">窑变临界点</div>
+                            <div class="diagram-arrow">→</div>
+                            <div class="diagram-step">1250℃</div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+                            <div style="background: linear-gradient(135deg, #8B4513, #CD853F); padding: 20px; border-radius: 8px; color: white; text-align: center;">
+                                <div style="font-size: 14px; opacity: 0.9;">古铜色</div>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #2F4F4F, #556B2F); padding: 20px; border-radius: 8px; color: white; text-align: center;">
+                                <div style="font-size: 14px; opacity: 0.9;">墨绿色</div>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #8B0000, #DC143C); padding: 20px; border-radius: 8px; color: white; text-align: center;">
+                                <div style="font-size: 14px; opacity: 0.9;">紫红色</div>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #4682B4, #87CEEB); padding: 20px; border-radius: 8px; color: white; text-align: center;">
+                                <div style="font-size: 14px; opacity: 0.9;">天蓝色</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

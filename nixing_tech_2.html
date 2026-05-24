@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>坭兴陶核心技术</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Serif SC', serif; background: #faf9f7; color: #333; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 60px 30px; }
+        
+        .tech-section { margin-bottom: 60px; }
+        .tech-title { font-size: 20px; font-weight: 700; color: #C4A35A; margin-bottom: 15px; display: flex; align-items: center; }
+        .tech-title::before { content: ''; display: inline-block; width: 4px; height: 20px; background: #C4A35A; margin-right: 10px; }
+        .tech-desc { color: #666; font-size: 15px; margin-bottom: 25px; line-height: 1.9; }
+        
+        .tech-card { background: white; border-radius: 12px; padding: 35px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .tech-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; }
+        
+        .flow-list { display: flex; flex-direction: column; gap: 15px; }
+        .flow-item { display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f6f0; border-radius: 8px; transition: all 0.3s; }
+        .flow-item:hover { transform: translateX(5px); background: #f0ebe0; }
+        .flow-icon { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #C4A35A, #8B7355); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 18px; flex-shrink: 0; }
+        .flow-content { flex: 1; }
+        .flow-label { font-size: 14px; color: #999; margin-bottom: 3px; }
+        .flow-name { font-size: 16px; font-weight: 600; color: #5D4E37; }
+        
+        .diagram-box { background: #faf9f7; border-radius: 10px; padding: 30px; border: 2px dashed #C4A35A; }
+        .diagram-title { text-align: center; font-size: 16px; font-weight: 600; color: #5D4E37; margin-bottom: 25px; }
+        .diagram-flow { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .diagram-step { padding: 12px 25px; background: white; border: 2px solid #C4A35A; border-radius: 25px; font-size: 14px; font-weight: 600; color: #5D4E37; }
+        .diagram-arrow { color: #C4A35A; font-size: 20px; }
+        
+        .tower-diagram { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 20px; }
+        .tower-level { text-align: center; }
+        .tower-shape { width: 200px; height: 70px; background: linear-gradient(135deg, #8B7355, #C4A35A); border-radius: 50% 50% 0 0; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 14px; }
+        .tower-shape.l2 { width: 260px; border-radius: 0; }
+        .tower-shape.l3 { width: 320px; border-radius: 0 0 50% 50%; }
+        .tower-label { margin-top: 8px; font-size: 13px; color: #666; }
+        
+        .art-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
+        .art-item { background: white; border: 2px solid #f0ebe0; border-radius: 10px; padding: 20px; text-align: center; transition: all 0.3s; }
+        .art-item:hover { transform: translateY(-5px); border-color: #C4A35A; }
+        .art-icon { font-size: 40px; margin-bottom: 10px; }
+        .art-name { font-size: 15px; font-weight: 600; color: #5D4E37; margin-bottom: 5px; }
+        .art-desc { font-size: 12px; color: #999; }
+        
+        .page-footer { text-align: right; padding-top: 30px; color: #999; font-size: 13px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tech-section">
+            <div class="tech-title">核心技术三：陶刻纹印工艺，书画增辉，以刀代笔</div>
+            <div class="tech-desc">
+                陶刻是坭兴陶的灵魂装饰工艺，匠人以刀代笔，在细腻的陶坯上雕刻诗词、山水、花鸟、人物等图案，
+                或融入书法艺术，实现"陶以书画增辉，书画因陶流传"的完美结合，每一件作品都是独一无二的艺术珍品。
+            </div>
+            
+            <div class="tech-card">
+                <div class="tech-grid">
+                    <div class="diagram-box">
+                        <div class="diagram-title">陶刻艺术表现形式</div>
+                        <div class="art-grid">
+                            <div class="art-item">
+                                <div class="art-icon">✒️</div>
+                                <div class="art-name">书法雕刻</div>
+                                <div class="art-desc">真草隶篆，刀笔传神</div>
+                            </div>
+                            <div class="art-item">
+                                <div class="art-icon">🎨</div>
+                                <div class="art-name">山水刻绘</div>
+                                <div class="art-desc">意境深远，气韵生动</div>
+                            </div>
+                            <div class="art-item">
+                                <div class="art-icon">🌸</div>
+                                <div class="art-name">花鸟图案</div>
+                                <div class="art-desc">栩栩如生，色彩斑斓</div>
+                            </div>
+                        </div>
+                        <div class="art-grid" style="margin-top: 15px;">
+                            <div class="art-item">
+                                <div class="art-icon">👤</div>
+                                <div class="art-name">人物故事</div>
+                                <div class="art-desc">历史典故，民俗风情</div>
+                            </div>
+                            <div class="art-item">
+                                <div class="art-icon">🔲</div>
+                                <div class="art-name">几何纹样</div>
+                                <div class="art-desc">传统图案，吉祥寓意</div>
+                            </div>
+                            <div class="art-item">
+                                <div class="art-icon">✨</div>
+                                <div class="art-name">填泥工艺</div>
+                                <div class="art-desc">白泥朱泥，色彩对比</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-list">
+                        <div class="flow-item">
+                            <div class="flow-icon">1</div>
+                            <div class="flow-content">
+                                <div class="flow-label">创作准备</div>
+                                <div class="flow-name">设计构图</div>
+                            </div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="flow-icon">2</div>
+                            <div class="flow-content">
+                                <div class="flow-label">雕刻阶段</div>
+                                <div class="flow-name">以刀代笔</div>
+                            </div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="flow-icon">3</div>
+                            <div class="flow-content">
+                                <div class="flow-label">雕刻阶段</div>
+                                <div class="flow-name">剔地刻划</div>
+                            </div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="flow-icon">4</div>
+                            <div class="flow-content">
+                                <div class="flow-label">填泥工艺</div>
+                                <div class="flow-name">色泥填充</div>
+                            </div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="flow-icon">5</div>
+                            <div class="flow-content">
+                                <div class="flow-label">修整完成</div>
+                                <div class="flow-name">打磨抛光</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tech-section">
+            <div class="tech-title">核心技术四：陶艺造型工艺，千形万态，大器天成</div>
+            <div class="tech-desc">
+                从精巧的茶具到两米多高的大器，坭兴陶造型丰富多样。依托细腻的泥料与精湛的拉坯技艺，
+                可塑造各种器型，圆器、方器、花器、仿生器应有尽有，既有传统韵味，又能创新发展。
+            </div>
+            
+            <div class="tech-card">
+                <div class="tech-grid">
+                    <div class="diagram-box">
+                        <div class="diagram-title">坭兴陶造型体系</div>
+                        <div class="tower-diagram">
+                            <div class="tower-level">
+                                <div class="tower-shape">艺术收藏</div>
+                                <div class="tower-label">精品大器、博物馆藏品</div>
+                            </div>
+                            <div class="tower-level">
+                                <div class="tower-shape l2">文房雅器</div>
+                                <div class="tower-label">花瓶、笔筒、摆件</div>
+                            </div>
+                            <div class="tower-level">
+                                <div class="tower-shape l3">日用生活</div>
+                                <div class="tower-label">茶壶、茶杯、餐具</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-list">
+                        <div class="flow-item">
+                            <div class="flow-icon">1</div>
+                            <div class="flow-content">
+                                <div class="flow-label">造型设计</div>
+                                <div class="flow-name">器型构思</div>
+                            </div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="flow-icon">2</div>
+                            <div class="flow-content">
+                                <div class="flow-label">拉坯成型</div>
+                                <div class="flow-name">手工拉坯</div>
+                            </div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="flow-icon">3</div>
+                            <div class="flow-content">
+                                <div class="flow-label">修坯阶段</div>
+                                <div class="flow-name">精修细琢</div>
+                            </div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="flow-icon">4</div>
+                            <div class="flow-content">
+                                <div class="flow-label">附件制作</div>
+                                <div class="flow-name">壶嘴壶把</div>
+                            </div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="flow-icon">5</div>
+                            <div class="flow-content">
+                                <div class="flow-label">干燥烧制</div>
+                                <div class="flow-name">阴干入窑</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="page-footer">02</div>
+    </div>
+</body>
+</html>

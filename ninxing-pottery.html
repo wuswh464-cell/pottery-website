@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广西坭兴陶 - 中国四大名陶之一</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Serif SC', serif; background-color: #F5F0E6; color: #5D4E37; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(245, 240, 230, 0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+        .logo { display: flex; align-items: center; gap: 10px; font-size: 24px; font-weight: 700; color: #C4A35A; }
+        .nav-links { display: flex; gap: 25px; }
+        .nav-links a { text-decoration: none; color: #5D4E37; font-weight: 500; transition: color 0.3s; cursor: pointer; }
+        .nav-links a:hover, .nav-links a.active { color: #C4A35A; }
+        .search { display: flex; align-items: center; gap: 10px; }
+        .search input { padding: 8px 15px; border: 2px solid #C4A35A; border-radius: 20px; outline: none; background: white; }
+        .hero { margin-top: 70px; height: 90vh; background: linear-gradient(rgba(93, 78, 55, 0.7), rgba(93, 78, 55, 0.7)), url('https://neeko-copilot.bytedance.net/api/text_to_image?prompt=beautiful%20Chinese%20pottery%20exhibition%20with%20warm%20lighting%20traditional%20style&image_size=landscape_16_9'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
+        .hero h1 { font-size: 60px; font-weight: 700; margin-bottom: 20px; }
+        .hero p { font-size: 24px; margin-bottom: 30px; }
+        .btn { padding: 12px 30px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: all 0.3s; font-weight: 600; }
+        .btn-primary { background: #C4A35A; color: white; }
+        .btn-primary:hover { background: #8B7355; }
+        .btn-secondary { background: transparent; color: #C4A35A; border: 2px solid #C4A35A; }
+        .btn-secondary:hover { background: #C4A35A; color: white; }
+        section { padding: 80px 0; }
+        .section-title { font-size: 36px; font-weight: 700; text-align: center; margin-bottom: 50px; }
+        .features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .feature-card { background: white; padding: 40px 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; cursor: pointer; transition: transform 0.3s; }
+        .feature-card:hover { transform: translateY(-10px); }
+        .feature-icon { font-size: 48px; color: #C4A35A; margin-bottom: 15px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card-img { width: 100%; height: 250px; object-fit: cover; }
+        .card-content { padding: 25px; }
+        .card-title { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+        .card-tag { display: inline-block; padding: 4px 12px; background: rgba(196, 163, 90, 0.1); color: #C4A35A; border-radius: 20px; font-size: 12px; margin: 5px 3px; }
+        .temp-control { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .temp-gauge { position: relative; width: 200px; height: 200px; margin: 30px auto; }
+        .gauge-circle { width: 100%; height: 100%; border-radius: 50%; background: #F5F0E6; position: relative; display: flex; align-items: center; justify-content: center; }
+        .gauge-value { font-size: 40px; font-weight: 700; }
+        .slider { width: 100%; height: 8px; border-radius: 4px; background: linear-gradient(90deg, #5D4E37, #C4A35A, #C46210); appearance: none; }
+        .slider::-webkit-slider-thumb { appearance: none; width: 25px; height: 25px; border-radius: 50%; background: #C4A35A; border: 4px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.2); cursor: pointer; }
+        .mode-buttons { display: flex; gap: 10px; margin: 20px 0; }
+        .mode-btn { flex: 1; padding: 15px; border: 2px solid #C4A35A; background: white; color: #C4A35A; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+        .mode-btn.active { background: #C4A35A; color: white; }
+        .steps { display: flex; justify-content: center; margin: 50px 0; flex-wrap: wrap; }
+        .step { display: flex; align-items: center; cursor: pointer; }
+        .step-circle { width: 60px; height: 60px; border-radius: 50%; background: white; border: 3px solid #C4A35A; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 20px; transition: all 0.3s; }
+        .step-line { width: 80px; height: 3px; background: #C4A35A; }
+        .step.active .step-circle { background: #C4A35A; color: white; }
+        footer { background: #5D4E37; color: #F5F0E6; padding: 50px 0; margin-top: 50px; }
+        .footer-links a { color: #F5F0E6; text-decoration: none; cursor: pointer; }
+        .hidden { display: none !important; }
+        .modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 2000; }
+        .modal-content { background: white; max-width: 800px; width: 100%; border-radius: 12px; max-height: 90vh; overflow-y: auto; position: relative; }
+        .close-btn { position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.3); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px; z-index: 10; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .features, .grid-4 { grid-template-columns: 1fr; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 36px; }
+            .step-line { width: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span>🏺</span> 坭兴陶
+                </div>
+                <div class="nav-links">
+                    <a class="active" onclick="showSection('home')">首页</a>
+                    <a onclick="showSection('knowledge')">知识介绍</a>
+                    <a onclick="showSection('temperature')">控温技术</a>
+                    <a onclick="showSection('process')">制作过程</a>
+                    <a onclick="showSection('works')">作品展示</a>
+                </div>
+                <div class="search">
+                    <input type="text" id="searchInput" placeholder="搜索坭兴陶知识..." oninput="handleSearch()">
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="content">
+        <section id="home" class="section-page">
+            <div class="hero">
+                <div>
+                    <h1>广西坭兴陶</h1>
+                    <p>中国四大名陶之一 · 国家级非物质文化遗产</p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="showSection('knowledge')">了解更多 →</button>
+                        <button class="btn btn-secondary" onclick="showSection('works')">欣赏作品</button>
+                    </div>
+                </div>
+            </div>
+
+            <section>
+                <div class="container">
+                    <h2 class="section-title">坭兴陶特色</h2>
+                    <div class="features">
+                        <div class="feature-card" onclick="showSection('knowledge')">
+                            <div class="feature-icon">📚</div>
+                            <h3>深厚历史</h3>
+                            <p>1300多年传承，中国四大名陶之一</p>
+                        </div>
+                        <div class="feature-card" onclick="showSection('process')">
+                            <div class="feature-icon">🔥</div>
+                            <h3>精湛工艺</h3>
+                            <p>独特窑变技艺，每件作品独一无二</p>
+                        </div>
+                        <div class="feature-card" onclick="showSection('works')">
+                            <div class="feature-icon">🎨</div>
+                            <h3>艺术价值</h3>
+                            <p>国家级非物质文化遗产</p>
+                        </div>
+                        <div class="feature-card" onclick="showSection('knowledge')">
+                            <div class="feature-icon">🏆</div>
+                            <h3>国际声誉</h3>
+                            <p>多次荣获国际博览会金奖</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="background: white;">
+                <div class="container">
+                    <h2 class="section-title">知识百科</h2>
+                    <div class="grid-4">
+                        <div class="card" onclick="showSection('knowledge')">
+                            <img class="card-img" src="images/image_2.jpg" alt="历史渊源">
+                            <div class="card-content">
+                                <h3 class="card-title">坭兴陶的历史渊源</h3>
+                                <p style="color: #C4A35A; font-size: 14px;">历史发展</p>
+                            </div>
+                        </div>
+                        <div class="card" onclick="showSection('knowledge')">
+                            <img class="card-img" src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=purple%20red%20clay%20material%20ceramic%20making&image_size=landscape_16_9" alt="独特原料">
+                            <div class="card-content">
+                                <h3 class="card-title">独特的原材料</h3>
+                                <p style="color: #C4A35A; font-size: 14px;">制作工艺</p>
+                            </div>
+                        </div>
+                        <div class="card" onclick="showSection('works')">
+                            <img class="card-img" src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=beautiful%20ceramic%20vase%20natural%20kiln%20change&image_size=landscape_16_9" alt="窑变艺术">
+                            <div class="card-content">
+                                <h3 class="card-title">窑变艺术</h3>
+                                <p style="color: #C4A35A; font-size: 14px;">艺术特色</p>
+                            </div>
+                        </div>
+                        <div class="card" onclick="showSection('temperature')">
+                            <img class="card-img" src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=pottery%20firing%20kiln%20temperature%20control&image_size=landscape_16_9" alt="控温技术">
+                            <div class="card-content">
+                                <h3 class="card-title">烧制控温技术</h3>
+                                <p style="color: #C4A35A; font-size: 14px;">控温技术</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section id="knowledge" class="section-page hidden">
+            <div class="container" style="padding-top: 100px;">
+                <h1 class="section-title" style="text-align: center; margin-bottom: 30px;">知识介绍</h1>
+                <div class="features" style="margin-bottom: 40px;">
+                    <div class="feature-card active" onclick="switchTab('history')">历史发展</div>
+                    <div class="feature-card" onclick="switchTab('craft')">制作工艺</div>
+                    <div class="feature-card" onclick="switchTab('art')">艺术特色</div>
+                    <div class="feature-card" onclick="switchTab('culture')">文化传承</div>
+                </div>
+                <div id="knowledge-content" class="grid-2">
+                    <div class="card" style="grid-column: span 2;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr;">
+                            <img src="images/image_2.jpg" style="width:100%; height: 300px; object-fit: cover;">
+                            <div style="padding: 30px;">
+                                <h3 style="font-size: 28px; margin-bottom: 15px;">坭兴陶的历史渊源</h3>
+                                <p>坭兴陶历史悠久，据史料记载始于唐朝，距今已有1300多年历史。钦州坭兴陶与江苏宜兴紫砂陶、四川荣昌陶、云南建水陶并称为中国四大名陶。清朝咸丰年间，坭兴陶达到鼎盛时期，产品远销东南亚各国。1915年，坭兴陶作品在美国旧金山巴拿马太平洋国际博览会上获得金奖，从此蜚声海内外。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="temperature" class="section-page hidden">
+            <div class="container" style="padding-top: 100px;">
+                <h1 class="section-title" style="text-align: center; margin-bottom: 30px;">坭兴陶控温技术</h1>
+                <div class="grid-2">
+                    <div>
+                        <div class="temp-control" style="text-align: center;">
+                            <h2 style="margin-bottom: 20px;">温度显示仪表</h2>
+                            <div class="temp-gauge">
+                                <div class="gauge-circle" id="tempGauge" style="border: 12px solid #F5F0E6; border-top: 12px solid #C4A35A;">
+                                    <div>
+                                        <div class="gauge-value" id="tempValue">1200</div>
+                                        <div style="color: #8B7355;">℃</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 30px;">
+                                <label style="font-weight: 600;">目标温度</label>
+                                <input type="range" min="1100" max="1300" value="1200" step="5" id="tempSlider" oninput="updateTemp(this.value)" class="slider">
+                                <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+                                    <span>1100℃</span>
+                                    <span>1300℃</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="temp-control">
+                            <h2>模式选择</h2>
+                            <div class="mode-buttons">
+                                <button class="mode-btn active" id="modePreheat" onclick="setMode('preheat')">预热</button>
+                                <button class="mode-btn" id="modeFire" onclick="setMode('fire')">烧成</button>
+                                <button class="mode-btn" id="modeCool" onclick="setMode('cool')">冷却</button>
+                            </div>
+                            <h2 style="margin-top: 30px;">参数设置</h2>
+                            <div style="margin-top: 15px;">
+                                <label>升温速率：<span id="heatRate">5</span>℃/分</label>
+                                <input type="range" min="1" max="10" value="5" class="slider" style="margin-top: 10px; margin-bottom: 20px;" oninput="document.getElementById('heatRate').innerText = this.value">
+                            </div>
+                            <div style="margin-top: 15px;">
+                                <label>保温时间：<span id="holdTime">30</span>分钟</label>
+                                <input type="range" min="10" max="120" value="30" class="slider" style="margin-top: 10px; margin-bottom: 20px;" oninput="document.getElementById('holdTime').innerText = this.value">
+                            </div>
+                            <div style="margin-top: 15px;">
+                                <label>降温速率：<span id="coolRate">3</span>℃/分</label>
+                                <input type="range" min="1" max="5" value="3" class="slider" style="margin-top: 10px; margin-bottom: 20px;" oninput="document.getElementById('coolRate').innerText = this.value">
+                            </div>
+                            <div style="display: flex; gap: 15px; margin-top: 20px;">
+                                <button class="btn btn-primary" style="flex: 1;" onclick="startSimulate()">▶ 开始模拟</button>
+                                <button class="btn btn-secondary" onclick="resetTemp()">↻ 重置</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="section-page hidden">
+            <div class="container" style="padding-top: 100px;">
+                <h1 class="section-title" style="text-align: center; margin-bottom: 30px;">制作过程</h1>
+                <div class="steps">
+                    <div class="step active" onclick="goStep(0)">
+                        <div class="step-circle">1</div>
+                        <div style="margin-left: 10px;">原料准备</div>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step" onclick="goStep(1)">
+                        <div class="step-circle">2</div>
+                        <div style="margin-left: 10px;">拉坯成型</div>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step" onclick="goStep(2)">
+                        <div class="step-circle">3</div>
+                        <div style="margin-left: 10px;">雕刻装饰</div>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step" onclick="goStep(3)">
+                        <div class="step-circle">4</div>
+                        <div style="margin-left: 10px;">烧制</div>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <img id="stepImage" src="images/image_10.jpg" style="width:100%; height:400px; object-fit:cover; border-radius:12px;">
+                    </div>
+                    <div>
+                        <div style="background: white; padding: 30px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
+                            <h2 id="stepTitle" style="margin-bottom: 20px;">原料准备</h2>
+                            <p id="stepDesc">精选钦江两岸的紫红陶土，经过筛选、淘洗、陈腐等工序，使陶土细腻纯净，具备良好的可塑性。</p>
+                            <h3 style="margin:20px 0 10px;">操作要点</h3>
+                            <ul id="stepPoints" style="margin-left:20px;">
+                                <li>精选优质陶土</li>
+                                <li>多次淘洗去除杂质</li>
+                                <li>陈腐发酵提高可塑性</li>
+                                <li>按比例调配泥料</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="works" class="section-page hidden">
+            <div class="container" style="padding-top: 100px;">
+                <h1 class="section-title" style="text-align: center; margin-bottom: 30px;">精品展示</h1>
+                <div class="grid-3">
+                    <div class="card" onclick="openModal(0)">
+                        <img class="card-img" src="images/image_14.jpg" alt="桃之夭夭">
+                        <div class="card-content">
+                            <h3 class="card-title">桃之夭夭</h3>
+                            <p style="color: #C4A35A;"></p>
+                            <div style="margin-top:10px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal(1)">
+                        <img class="card-img" src="images/image_15.jpg" alt="关情陶韵">
+                        <div class="card-content">
+                            <h3 class="card-title">关情陶韵</h3>
+                            <p style="color: #C4A35A;"></p>
+                            <div style="margin-top:10px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal(2)">
+                        <img class="card-img" src="images/image_16.jpg" alt="禅影茶语">
+                        <div class="card-content">
+                            <h3 class="card-title">禅影茶语</h3>
+                            <p style="color: #C4A35A;"></p>
+                            <div style="margin-top:10px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <div id="workModal" class="modal hidden">
+        <div class="modal-content" style="position: relative;">
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <div id="modalContent">
+                <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=beautiful%20ceramic%20vase%20with%20landscape&image_size=landscape_16_9" style="width:100%; height: 400px; object-fit: cover;">
+                <div style="padding: 30px;">
+                    <h2 id="modalTitle" style="font-size: 28px;">山水清音</h2>
+                    <p id="modalArtist" style="color: #C4A35A; margin: 10px 0;"></p>
+                    <p id="modalDesc">这件作品以山水画为主题，运用浮雕技法展现桂林山水的秀美景色，窑变效果自然流畅。</p>
+                    <div style="margin-top: 20px;">
+                        <span class="card-tag">山水</span>
+                        <span class="card-tag">浮雕</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;">
+            <div>
+                <div class="logo" style="color: white; font-size: 28px;">🏺 坭兴陶</div>
+                <p style="margin-top: 15px; color: rgba(245, 240, 230, 0.8);">
+                    广西坭兴陶是中国四大名陶之一，拥有1300多年的历史。本网站致力于传承和推广坭兴陶文化。
+                </p>
+                <p style="color: rgba(245, 240, 230, 0.6); margin-top: 15px;">2024 广西坭兴陶文化传播中心</p>
+            </div>
+            <div>
+                <h3 style="margin-bottom: 20px;">快速链接</h3>
+                <div class="footer-links" style="display: flex; flex-direction: column; gap: 10px;">
+                    <a onclick="showSection('home')">首页</a>
+                    <a onclick="showSection('knowledge')">知识介绍</a>
+                    <a onclick="showSection('temperature')">控温技术</a>
+                    <a onclick="showSection('process')">制作过程</a>
+                    <a onclick="showSection('works')">作品展示</a>
+                </div>
+            </div>
+            <div>
+                <h3 style="margin-bottom: 20px;">联系我们</h3>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <span>📍 广西民族师范学院</span>
+                    <span>📞 19328201493</span>
+                    <span>✉️ 237011010236@qq.com</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentTemp = 1200;
+        let simulateInterval = null;
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section-page').forEach(el => el.classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
+            document.querySelectorAll('.nav-links a').forEach(el => el.classList.remove('active'));
+            event.target.classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        function switchTab(tab) {
+            const content = document.getElementById('knowledge-content');
+            const data = {
+                history: '<div class="card" style="grid-column: span 2;"><div style="display: grid; grid-template-columns: 1fr 1fr;"><img src="images/image_2.jpg" style="width:100%; height:300px; object-fit: cover;"><div style="padding: 30px;"><h3 style="font-size:28px;">坭兴陶的历史渊源</h3><p>坭兴陶历史悠久，据史料记载始于唐朝，距今已有1300多年历史。钦州坭兴陶与江苏宜兴紫砂陶、四川荣昌陶、云南建水陶并称为中国四大名陶。清朝咸丰年间，坭兴陶达到鼎盛时期，产品远销东南亚各国。1915年，坭兴陶作品在美国旧金山巴拿马太平洋国际博览会上获得金奖，从此蜚声海内外。</p></div></div></div>',
+                craft: '<div class="card" style="grid-column: span 2;"><div style="display: grid; grid-template-columns: 1fr 1fr;"><img src="images/image_4.jpg" style="width:100%; height:300px; object-fit: cover;"><div style="padding: 30px;"><h3 style="font-size:28px;">精湛的制作工艺</h3><p>坭兴陶制作工艺精湛，包含选料、揉泥、拉坯、修坯、雕刻、烧制等数十道工序。首先精选钦江两岸的紫红陶土，经过筛选、淘洗、陈腐等工序使陶土细腻纯净。然后在陶轮上手工拉坯成型，运用双手控制器型。接着在干燥的坯体上进行雕刻装饰，运用浮雕、透雕、线刻等多种技法。最后放入窑中经过1100-1300℃高温烧制，产生独特的窑变效果。</p></div></div></div>',
+                art: '<div class="card" style="grid-column: span 2;"><div style="display: grid; grid-template-columns: 1fr 1fr;"><img src="images/image_6.jpg" style="width:100%; height:300px; object-fit: cover;"><div style="padding: 30px;"><h3 style="font-size:28px;">独特的艺术风格</h3><p>坭兴陶最独特的艺术特色是窑变。在高温烧制过程中，由于窑内气氛的微妙变化，陶土中的金属氧化物发生还原反应，使器物表面呈现出意想不到的色彩变化，如朱砂红、天蓝、古铜等自然色泽。窑变效果千变万化，每件作品都是独一无二的艺术珍品。此外，坭兴陶雕刻技法多样，题材广泛，融书法、绘画、雕刻于一体，具有极高的艺术价值。</p></div></div></div>',
+                culture: '<div class="card" style="grid-column: span 2;"><div style="display: grid; grid-template-columns: 1fr 1fr;"><img src="images/image_8.jpg" style="width:100%; height:300px; object-fit: cover;"><div style="padding: 30px;"><h3 style="font-size:28px;">文化传承</h3><p>依托《钦州市坭兴陶产业促进条例》法治保障，钦州以法规守护独有陶土原料，严控资源开采；依托非遗师徒传承、古龙窑古法柴烧，保留天然窑变核心技艺；通过非遗进校园、文创跨界融合民族纹样，产学研并举，让千年四大名陶技艺活态延续、产业化传承。</p></div></div></div>'
+            };
+            content.innerHTML = data[tab];
+        }
+
+        function updateTemp(value) {
+            currentTemp = parseInt(value);
+            document.getElementById('tempValue').innerText = value;
+            let color = '#C4A35A';
+            if(value < 1150) color = '#8B7355';
+            else if (value > 1250) color = '#C46210';
+            document.getElementById('tempGauge').style.borderColor = color;
+            document.getElementById('tempGauge').style.borderTopColor = color;
+        }
+
+        function setMode(mode) {
+            document.querySelectorAll('.mode-btn').forEach(el => el.classList.remove('active'));
+            if(mode === 'preheat') {
+                document.getElementById('modePreheat').classList.add('active');
+                updateTemp(600);
+                document.getElementById('tempSlider').value = 600;
+            } else if (mode === 'fire') {
+                document.getElementById('modeFire').classList.add('active');
+                updateTemp(1200);
+                document.getElementById('tempSlider').value = 1200;
+            } else {
+                document.getElementById('modeCool').classList.add('active');
+                updateTemp(200);
+                document.getElementById('tempSlider').value = 200;
+            }
+        }
+
+        function startSimulate() {
+            const btn = event.target;
+            if (simulateInterval) {
+                clearInterval(simulateInterval);
+                simulateInterval = null;
+                btn.innerText = '▶ 开始模拟';
+                return;
+            }
+            let target = parseInt(document.getElementById('tempSlider').value);
+            btn.innerText = '⏸ 暂停模拟';
+            simulateInterval = setInterval(() => {
+                let curr = parseInt(document.getElementById('tempValue').innerText);
+                if(curr < target) {
+                    updateTemp(curr + 1);
+                    document.getElementById('tempSlider').value = curr + 1;
+                } else if (curr > target) {
+                    updateTemp(curr - 1);
+                    document.getElementById('tempSlider').value = curr - 1;
+                } else {
+                    clearInterval(simulateInterval);
+                    simulateInterval = null;
+                    btn.innerText = '▶ 开始模拟';
+                }
+            }, 100);
+        }
+
+        function resetTemp() {
+            updateTemp(1200);
+            document.getElementById('tempSlider').value = 1200;
+        }
+
+        const stepsData = [
+            { 
+                title: '原料准备',
+                desc: '精选钦江两岸的紫红陶土，经过筛选、淘洗、陈腐等工序。',
+                img: 'images/image_10.jpg',
+                points: ['精选优质陶土', '多次淘洗去除杂质', '陈腐发酵提高可塑性', '按比例调配泥料']
+            },
+            { 
+                title: '拉坯成型',
+                desc: '将调配好的泥料放在陶轮上，通过双手控制陶轮转速和泥料形状。',
+                img: 'images/image_11.jpg',
+                points: ['掌握陶轮转速', '双手协调控制', '保持器型对称', '注意壁厚均匀']
+            },
+            { 
+                title: '雕刻装饰',
+                desc: '在干燥的坯体上雕刻装饰，运用浮雕、透雕、线刻等技法。',
+                img: 'images/image_12.jpg',
+                points: ['设计精美图案', '刀法细腻流畅', '构图均衡协调', '突出主题意境']
+            },
+            { 
+                title: '烧制',
+                desc: '将雕刻好的坯体放入窑中，经过预热、烧成、冷却三个阶段。',
+                img: 'images/image_13.jpg',
+                points: ['控制升温速率', '保持烧成温度', '掌握保温时间', '自然冷却降温']
+            }
+        ];
+
+        function goStep(index) {
+            document.querySelectorAll('.step').forEach((el, i) => {
+                el.classList.toggle('active', i <= index);
+            });
+            document.getElementById('stepTitle').innerText = stepsData[index].title;
+            document.getElementById('stepDesc').innerText = stepsData[index].desc;
+            document.getElementById('stepImage').src = stepsData[index].img;
+            document.getElementById('stepPoints').innerHTML = stepsData[index].points.map(p => '<li>' + p + '</li>').join('');
+        }
+
+        const works = [
+            { title: '桃之夭夭', artist: '', desc: '以《诗经》中的桃夭为灵感，借桃花之美寓意生活美好，将中国传统书画、茶文化融入现代审美来设计，使古典诗意与现代审美相结合，传递中国传统文化的深厚内涵与和谐之美。', tags: [], img: 'images/image_14.jpg' },
+            { title: '关情陶韵', artist: '', desc: '将崇左友谊关的情谊与坭兴陶的韵味相结合，寓意着坭兴陶承载着友谊关独特的情感和魅力的"关情陶韵"。', tags: [], img: 'images/image_15.jpg' },
+            { title: '禅影茶语', artist: '', desc: '具集现代简约风格与东方禅意于一体，巧妙结合了书法艺术，映射出用户的高雅品味，旨在为用户营造一个静谧深邃的品茗环境，让茶香与心灵在宁静中交融，体验一场身心的洗礼。', tags: [], img: 'images/image_16.jpg' }
+        ];
+
+        function openModal(index) {
+            document.getElementById('modalTitle').innerText = works[index].title;
+            document.getElementById('modalArtist').innerText = works[index].artist;
+            document.getElementById('modalDesc').innerText = works[index].desc;
+            document.querySelector('#workModal img').src = works[index].img;
+            document.getElementById('workModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('workModal').classList.add('hidden');
+        }
+
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            if (query.length > 0) {
+                showSection('knowledge');
+            }
+        }
+
+        window.onclick = function(event) {
+            if(event.target.id === 'workModal') {
+                closeModal();
+            }
+        };
+    </script>
+</body>
+</html>

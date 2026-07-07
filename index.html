@@ -3,75 +3,756 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=ninxing-pottery.html">
-    <title>广西坭兴陶 - 跳转中...</title><!-- updated 2026-07-02 -->
+    <title>坭兴陶文创产品设计与开发</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #C4A35A 0%, #8B7355 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-        .container {
-            text-align: center;
-            padding: 40px;
-        }
-        .logo {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-size: 36px;
-            margin-bottom: 15px;
-            font-weight: 300;
-        }
-        p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        .loading {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-            margin-bottom: 20px;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        .btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: white;
-            color: #8B7355;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        body { font-family: 'Noto Serif SC', serif; background-color: #F5F0E6; color: #5D4E37; line-height: 1.8; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(245, 240, 230, 0.98); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; }
+        .logo { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 700; color: #5D4E37; font-family: 'Ma Shan Zheng', cursive; }
+        .logo img { height: 40px; width: auto; }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-links a { text-decoration: none; color: #5D4E37; font-weight: 500; transition: all 0.3s ease; font-size: 13px; position: relative; padding: 5px 0; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #C4A35A; transition: width 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: #C4A35A; transform: translateY(-1px); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .hero { margin-top: 60px; padding: 80px 0; background-color: #F5F0E6; display: flex; align-items: center; justify-content: center; text-align: center; color: #5D4E37; }
+        .hero h1 { font-size: 42px; font-weight: 700; margin-bottom: 25px; font-family: 'Ma Shan Zheng', cursive; }
+        .hero p { font-size: 16px; margin-bottom: 30px; line-height: 2; max-width: 1000px; text-align: justify; padding: 0 20px; }
+        .btn { padding: 12px 35px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: all 0.3s ease; font-weight: 600; text-decoration: none; display: inline-block; position: relative; overflow: hidden; }
+        .btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s ease; }
+        .btn:hover::before { left: 100%; }
+        .btn-primary { background: #C4A35A; color: white; }
+        .btn-primary:hover { background: #8B7355; transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 20px rgba(196, 163, 90, 0.4); }
+        section { padding: 80px 0; }
+        .section-title { font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 50px; color: #5D4E37; }
+        .section-subtitle { font-size: 24px; font-weight: 600; margin-bottom: 20px; color: #8B7355; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
+        .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s ease; cursor: pointer; }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(196, 163, 90, 0.2); border: 1px solid rgba(196, 163, 90, 0.3); }
+        .card-img { width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease; }
+        .card:hover .card-img { transform: scale(1.05); }
+        .card-content { padding: 25px; }
+        .card-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; transition: color 0.3s ease; }
+        .card:hover .card-title { color: #C4A35A; }
+        .info-box { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s ease; }
+        .info-box:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(196, 163, 90, 0.15); border: 1px solid rgba(196, 163, 90, 0.2); }
+        .info-box h3 { font-size: 20px; font-weight: 700; margin-bottom: 15px; color: #8B7355; transition: color 0.3s ease; }
+        .info-box:hover h3 { color: #C4A35A; }
+        .feature-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; padding: 15px; border-radius: 8px; transition: all 0.3s ease; cursor: pointer; }
+        .feature-item:hover { background: rgba(196, 163, 90, 0.08); transform: translateX(5px); }
+        .feature-icon { width: 45px; height: 45px; background: #C4A35A; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; flex-shrink: 0; transition: all 0.3s ease; }
+        .feature-item:hover .feature-icon { background: #8B7355; transform: scale(1.1); }
+        .feature-content h4 { margin-bottom: 5px; color: #5D4E37; transition: color 0.3s ease; }
+        .feature-item:hover .feature-content h4 { color: #C4A35A; }
+        .feature-content p { font-size: 14px; color: #666; }
+        .timeline { position: relative; padding-left: 40px; }
+        .timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #C4A35A; }
+        .timeline-item { position: relative; margin-bottom: 30px; }
+        .timeline-item::before { content: ''; position: absolute; left: -33px; top: 5px; width: 15px; height: 15px; background: #C4A35A; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
+        .timeline-year { font-weight: 700; color: #C4A35A; margin-bottom: 5px; }
+        .timeline-content { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer; }
+        .timeline-content:hover { transform: translateX(8px); box-shadow: 0 4px 15px rgba(196, 163, 90, 0.15); background: rgba(196, 163, 90, 0.03); }
+        .process-box { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; text-align: center; transition: all 0.3s ease; cursor: pointer; }
+        .process-box:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 10px 25px rgba(196, 163, 90, 0.18); border: 1px solid rgba(196, 163, 90, 0.3); }
+        .process-box img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; transition: transform 0.3s ease; }
+        .process-box:hover img { transform: scale(1.08); }
+        .process-box h4 { font-size: 16px; font-weight: 600; margin-bottom: 10px; transition: color 0.3s ease; }
+        .process-box:hover h4 { color: #C4A35A; }
+        .process-box p { font-size: 13px; color: #666; line-height: 1.6; }
+        .arrow { text-align: center; font-size: 24px; color: #C4A35A; margin: 10px 0; }
+        .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .work-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s ease; cursor: pointer; }
+        .work-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(196, 163, 90, 0.2); border: 1px solid rgba(196, 163, 90, 0.3); }
+        .work-card img { width: 100%; height: 220px; object-fit: cover; transition: transform 0.3s ease; }
+        .work-card:hover img { transform: scale(1.05); }
+        .work-card .info { padding: 20px; }
+        .work-card .series { font-size: 12px; color: #C4A35A; margin-bottom: 5px; transition: color 0.3s ease; }
+        .work-card:hover .series { color: #8B7355; }
+        .work-card .title { font-size: 18px; font-weight: 700; margin-bottom: 10px; transition: color 0.3s ease; }
+        .work-card:hover .title { color: #C4A35A; }
+        .work-card .award { font-size: 13px; color: #666; line-height: 1.5; }
+        footer { background: #5D4E37; color: #F5F0E6; padding: 50px 0; margin-top: 50px; }
+        .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+        .footer-links { display: flex; flex-direction: column; gap: 10px; }
+        .footer-links a { color: rgba(245, 240, 230, 0.8); text-decoration: none; font-size: 14px; transition: all 0.3s ease; position: relative; padding-left: 0; }
+        .footer-links a::before { content: '→'; position: absolute; left: -15px; opacity: 0; transition: all 0.3s ease; }
+        .footer-links a:hover { color: #C4A35A; padding-left: 15px; }
+        .footer-links a:hover::before { opacity: 1; left: 0; }
+        .hidden { display: none !important; }
+        .img-error { background: #F5F0E6; display: flex; align-items: center; justify-content: center; color: #8B7355; font-size: 14px; border: 2px dashed #C4A35A; }
+        .img-error::before { content: '🖼️ 图片加载失败'; }
+        .image-preview { cursor: pointer; transition: transform 0.2s; }
+        .image-preview:hover { transform: scale(1.02); }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 2000; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
+        .lightbox.active { display: flex; }
+        .lightbox-content { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .lightbox-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; background: rgba(255,255,255,0.2); border: none; border-radius: 50%; color: white; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .lightbox-close:hover { background: rgba(255,255,255,0.3); }
+        .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(255,255,255,0.2); border: none; border-radius: 50%; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .lightbox-nav:hover { background: rgba(255,255,255,0.3); }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+        .temp-control-panel { background: #3D3D3D; border-radius: 16px; padding: 40px; color: white; }
+        .temp-display { text-align: center; margin-bottom: 40px; }
+        .temp-value { font-size: 72px; font-weight: 700; color: #C4A35A; font-family: monospace; }
+        .temp-unit { font-size: 24px; color: #999; }
+        .temp-label { font-size: 14px; color: #666; margin-top: 10px; }
+        .control-group { margin-bottom: 30px; }
+        .control-label { font-size: 14px; color: #999; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .control-label span:last-child { color: #C4A35A; font-weight: 600; }
+        .slider-container { position: relative; height: 8px; background: #555; border-radius: 4px; cursor: pointer; }
+        .slider-track { height: 100%; background: linear-gradient(90deg, #C4A35A, #FF6B6B); border-radius: 4px; transition: width 0.1s ease; }
+        .slider-thumb { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 24px; height: 24px; background: white; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.3); cursor: grab; transition: transform 0.2s ease; }
+        .slider-thumb:hover { transform: translate(-50%, -50%) scale(1.2); }
+        .slider-thumb:active { cursor: grabbing; }
+        .mode-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 30px; }
+        .mode-btn { flex: 1; padding: 15px 30px; border: 2px solid #555; background: transparent; color: #999; border-radius: 8px; font-size: 16px; cursor: pointer; transition: all 0.3s ease; }
+        .mode-btn:hover { border-color: #C4A35A; color: #C4A35A; }
+        .mode-btn.active { background: #C4A35A; border-color: #C4A35A; color: white; box-shadow: 0 0 20px rgba(196, 163, 90, 0.3); }
+        .progress-bar { height: 4px; background: #555; border-radius: 2px; margin-top: 20px; overflow: hidden; }
+        .progress-fill { height: 100%; background: #C4A35A; border-radius: 2px; transition: width 0.5s ease; }
+        .status-indicator { display: flex; align-items: center; gap: 10px; margin-top: 20px; }
+        .status-dot { width: 12px; height: 12px; border-radius: 50%; background: #FF6B6B; animation: pulse 1.5s infinite; }
+        .status-dot.idle { background: #666; animation: none; }
+        .status-dot.working { background: #C4A35A; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .control-info { display: flex; justify-content: space-between; margin-top: 10px; font-size: 12px; color: #666; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .grid-2, .grid-3, .grid-4, .work-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 28px; }
+            .footer-content { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">🏺</div>
-        <h1>广西坭兴陶</h1>
-        <p>正在跳转至主页面...</p>
-        <div class="loading"></div>
-        <br>
-        <a href="ninxing-pottery.html" class="btn">立即跳转</a>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo"><img src="images/图片1.png" alt="logo">坭兴陶文创产品设计与开发</div>
+                <div class="nav-links">
+                    <a class="active" onclick="showSection('home')">首页</a>
+                    <a onclick="showSection('overview')">项目概述</a>
+                    <a onclick="showSection('achievements')">项目成果</a>
+                    <a onclick="showSection('patterns')">纹样创新</a>
+                    <a onclick="showSection('materials')">原料创新</a>
+                    <a onclick="showSection('temperature')">温控技术</a>
+                    <a onclick="showSection('process')">制作过程</a>
+                    <a onclick="showSection('works')">作品展示</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="content">
+        <section id="home" class="section-page">
+            <div class="hero">
+                <div>
+                    <h1>项目总介绍</h1>
+                    <p>在现代化进程中，坭兴陶传统手工艺面临着传承与创新的双重挑战。本项目通过坭兴陶文旅产品市场的调研，以及陶土配方和温控技术核心技术研究，结合广西特色民族文化元素进行坭兴陶在地性创新设计与开发，旨在推动坭兴陶文化的传承与发展，并以坭兴陶产品为载体，传播广西特色民族文化，增强各民族之间的交往、交流、交融。以人工智能赋能广西优秀传统文化创造性转化与创新性发展，结合现代设计理念，围绕壮族天琴、花山岩画、壮族铜鼓等文化元素，设计系列化、故事化的坭兴陶文旅产品，如茶具、餐具、装饰品等，打造具有时代感与文化底蕴的坭兴陶文旅产品，实现传统工艺与现代审美的完美融合，将为坭兴陶文化的传承与发展注入新的活力；其次，通过打造特色文旅产品，采用不同的市场销售和推广渠道，提升坭兴陶的品牌影响力，推动坭兴陶产业与乡村旅游业的深度融合，也将与乡村坭兴陶手工作坊和茶农合作，延伸产业链，提高产品附加值，带动乡村文旅产业和茶经济的发展，赋能助力乡村振兴。</p>
+                    <button class="btn btn-primary" onclick="showSection('overview')">了解项目详情 →</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="overview" class="section-page hidden">
+            <div class="container" style="padding-top: 100px;">
+                <h1 class="section-title">项目概述</h1>
+                
+                <div class="grid-2" style="margin-bottom: 40px;">
+                    <div class="info-box">
+                        <h3>个人成长</h3>
+                        <img src="images/图片2.png" style="width:100%; height:250px; object-fit:cover; border-radius:8px; margin-bottom:15px;">
+                        <p>项目负责人毛芯苑入校结缘坭兴陶后，组建跨学科团队，依托校内科研平台、实训基地与行业专家资源，赴钦州产区实地研学，深耕陶艺烧制与现代文创设计。团队融合九大学科优势，创新打造"非遗+文创+电商"模式，持续研发茶具、装饰等系列产品，完成专利、论文、赛事成果积累，对接本地陶企落地市场化转化。成员综合能力大幅提升，斩获百余项各级奖项，同步开展非遗公益科普、产学研校企合作，在竞赛、研发、商业实践中实现全方位成长。</p>
+                    </div>
+                    <div class="info-box">
+                        <h3>项目创新</h3>
+                        <img src="images/embedded_image_3.png" style="width:100%; height:250px; object-fit:cover; border-radius:8px; margin-bottom:15px;">
+                        <div class="feature-item">
+                            <div class="feature-icon">1</div>
+                            <div class="feature-content">
+                                <h4>搭建坭兴陶数字纹样库</h4>
+                                <p>收录万级地域文化纹样，解决设计难问题</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">2</div>
+                            <div class="feature-content">
+                                <h4>建立数字化原料配比模型</h4>
+                                <p>智能筛选原料，解决配比难问题</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">3</div>
+                            <div class="feature-content">
+                                <h4>研发智能控温烧制技术</h4>
+                                <p>成品率大幅提升，解决温控难问题</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2" style="margin-bottom: 40px;">
+                    <div class="info-box">
+                        <h3>发展前景</h3>
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <img src="images/图片3.png" style="width:80%; height:auto; border-radius:8px; margin-bottom:15px;">
+                        </div>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-year">2027年</div>
+                                <div class="timeline-content">深耕崇左本地市场，抢占广西陶瓷市场5%份额</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">2028年</div>
+                                <div class="timeline-content">覆盖广西，省内市场占比达40%</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">2029年</div>
+                                <div class="timeline-content">拓展全国，拿下国内陶瓷市场1%份额</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <h3>团队介绍</h3>
+                        <img src="images/图片4.jpeg" style="width:100%; height:250px; object-fit:cover; border-radius:8px; margin-bottom:15px;">
+                        <p>学生创业团队跨专业、跨国别组建，涵盖设计、技术、销售、运营、财务全岗位，成员包含海外留学生、越南留学生及外校优秀人才，手握多项专利、软件著作权与百万级市场实操经验，多学科优势互补，为坭兴陶非遗创新提供全方位支撑。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements" class="section-page hidden">
+            <div class="container" style="padding-top: 100px;">
+                <h1 class="section-title">项目成果</h1>
+                
+                <div class="grid-3">
+                    <div class="card">
+                        <img class="card-img" src="images/图片5.png" alt="专利">
+                        <div class="card-content">
+                            <h3 class="card-title">专利</h3>
+                            <p>团队围绕坭兴陶原料改良、数字化纹样创新、新型陶艺器具外观完成3项专利布局，包含外观设计专利、实用新型专利，以知识产权保护非遗创新成果，支撑项目产业化落地。</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="images/图片6.png" alt="论文">
+                        <div class="card-content">
+                            <h3 class="card-title">论文</h3>
+                            <p>团队围绕壮锦古陶纹样数字化、坭兴陶原料改良、非遗陶艺创新方向撰写6篇学术论文，系统梳理本土纹样提取、AI驯化设计、泥料配比研发的研究过程，为项目设计提供理论支撑。</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="images/图片7.jpeg" alt="获奖情况">
+                        <div class="card-content">
+                            <h3 class="card-title">获奖情况</h3>
+                            <p>团队凭借坭兴陶数字化创新作品参与各级文创、艺术设计赛事，斩获全国高校美术作品展、大学生文化创意竞赛等多项金银奖、一二三等奖，多组设计作品入选省级艺术展会。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="patterns" class="section-page hidden">
+            <div class="container" style="padding-top: 100px;">
+                <h1 class="section-title">纹样创新</h1>
+                
+                <div class="info-box" style="margin-bottom: 40px;">
+                    <h3>1. 原始纹样库</h3>
+                    <img src="images/图片8.jpg" style="width:100%; height:300px; object-fit:cover; border-radius:8px; margin-bottom:15px;">
+                </div>
+
+                <div class="info-box" style="margin-bottom: 40px;">
+                    <h3>2. 纹样创新流程</h3>
+                    <div class="grid-3">
+                        <div class="process-box">
+                            <img src="images/图片9.jpg" alt="传统纹样素材">
+                            <h4>传统纹样素材</h4>
+                            <p>搭配钦州坭兴陶史前拓印纹样作为创作基底。这类传统纹样细节繁复，肌理杂乱，很难直接应用在现代陶艺雕刻之中。</p>
+                        </div>
+                        <div class="arrow">↓</div>
+                        <div class="process-box">
+                            <img src="images/图片10.jpeg" alt="Coze AI几何驯化">
+                            <h4>Coze AI几何驯化</h4>
+                            <p>依托Coze AI平台完成纹样几何驯化，是本次设计的核心技术环节。我们将全部原始素材批量录入素材库，利用AI去除布料杂色与多余肌理，提炼纯净的纹样轮廓线条。提取最小几何单元，统一线条结构、规整造型比例，完成传统纹样的AI标准化,把老旧繁琐的古纹，转化为干净、可复用、可重组的基础纹样模块</p>
+                        </div>
+                        <div class="arrow">↓</div>
+                        <div class="process-box">
+                            <img src="images/图片11.jpeg" alt="新式纹样成品输出">
+                            <h4>新式纹样成品输出</h4>
+                            <p>我们将驯化完成的标准化单元进行对称排布、连续拼接、创新组合，生成适配现代审美的全新装饰纹样。最终完成传统非遗纹样的现代化创新与陶艺落地应用。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3>3. 创新纹样库</h3>
+                    <img src="images/图片12.jpeg" style="width:100%; height:300px; object-fit:cover; border-radius:8px; margin-bottom:15px;">
+                    <p>我们搜集蛙纹、八角纹、龟纹等传统壮锦纹样，借助AI驯化拆解提取核心图案元素，简化繁复线条、重构单元比例，结合坭兴陶雕刻工艺调整纹样质感，完成材质转化，打造出适配陶艺器皿、茶具与文创产品的现代纹样体系。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="materials" class="section-page hidden">
+            <div class="container" style="padding-top: 100px;">
+                <h1 class="section-title">原料创新</h1>
+                <h2 style="text-align:center; margin-bottom:30px; color:#8B7355;">数字化原料配比集生成泥料配比132种</h2>
+                
+                <div class="grid-2">
+                    <div>
+                        <h3 style="margin-bottom:20px; color:#5D4E37;">配比集建立</h3>
+                        <div class="process-box" style="margin-bottom:20px;">
+                            <img src="images/图片13.jpeg" alt="原料采集">
+                            <h4>原料采集</h4>
+                            <p>团队实地前往矿区开展原料采集工作，收集浅褐矿石、深紫陶矿、红泥矿三类坭兴陶原生矿土，现场完成手工采土、筛分、拣选等工序，获取纯净原始矿料。</p>
+                        </div>
+                        <div class="process-box" style="margin-bottom:20px;">
+                            <img src="images/图片14.jpeg" alt="搜集材料">
+                            <h4>搜集材料</h4>
+                            <p>我们大量搜集传统制陶资料，整理2万种工艺材料参数与120组经典陶泥配比，将矿土样本信息、配比数据一同录入AI系统完成驯化训练。</p>
+                        </div>
+                        <div class="process-box">
+                            <img src="images/图片15.jpeg" alt="配比测试">
+                            <h4>配比测试</h4>
+                            <p>多组分装原料小样、分层烧制对照试样杯，自行测试原料与烧制结果间的匹配关系，验证AI配比模型的准确性。</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom:20px; color:#5D4E37;">成效</h3>
+                        <div class="process-box" style="margin-bottom:20px;">
+                            <img src="images/图片16.jpeg" alt="数字化配比思维导图">
+                            <h4>数字化配比思维导图</h4>
+                            <p>生成泥料配比132种，涵盖日用陶、工艺陶等多个品类，为坭兴陶创新提供丰富的原料选择。</p>
+                        </div>
+                        <div class="process-box" style="margin-bottom:20px;">
+                            <img src="images/图片17.jpeg" alt="日用陶泥料">
+                            <h4>日用陶泥料配比</h4>
+                            <p>碗里盛放不同日用陶泥原料样本，日用陶泥料配比60种，满足日常器皿制作需求。</p>
+                        </div>
+                        <div class="process-box">
+                            <img src="images/图片18.jpeg" alt="工艺陶泥料">
+                            <h4>工艺陶泥料配比</h4>
+                            <p>碗里盛放不同工艺陶泥原料样本，工艺陶泥料配比72种，支持高端陶艺作品创作。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="temperature" class="section-page hidden">
+            <div class="container" style="padding-top: 100px;">
+                <h1 class="section-title">温控技术</h1>
+                <div class="temp-control-panel">
+                    <div class="temp-display">
+                        <div><span class="temp-value" id="tempValue">25</span><span class="temp-unit">°C</span></div>
+                        <div class="temp-label">当前温度</div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="control-label">
+                            <span>温度设定</span>
+                            <span id="tempSet">25°C</span>
+                        </div>
+                        <div class="slider-container" id="tempSlider">
+                            <div class="slider-track" id="tempTrack"></div>
+                            <div class="slider-thumb" id="tempThumb"></div>
+                        </div>
+                        <div class="control-info">
+                            <span>室温</span>
+                            <span>1300°C</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="control-label">
+                            <span>升温速率</span>
+                            <span id="rateSet">5°C/min</span>
+                        </div>
+                        <div class="slider-container" id="rateSlider">
+                            <div class="slider-track" id="rateTrack"></div>
+                            <div class="slider-thumb" id="rateThumb"></div>
+                        </div>
+                        <div class="control-info">
+                            <span>1°C/min</span>
+                            <span>20°C/min</span>
+                        </div>
+                    </div>
+
+                    <div class="mode-buttons">
+                        <button class="mode-btn" onclick="setMode('preheat')">预热</button>
+                        <button class="mode-btn active" onclick="setMode('fire')">烧成</button>
+                        <button class="mode-btn" onclick="setMode('cool')">冷却</button>
+                    </div>
+
+                    <div class="status-indicator">
+                        <div class="status-dot working" id="statusDot"></div>
+                        <span id="statusText">系统运行中</span>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 25%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="section-page hidden">
+            <div class="container" style="padding-top: 100px;">
+                <h1 class="section-title">精湛的制作工艺</h1>
+                <div class="info-box" style="text-align:center;">
+                    <h3 style="margin-bottom:20px;">制作流程</h3>
+                    <div class="timeline" style="display:inline-block; text-align:left;">
+                        <div class="timeline-item">
+                            <div class="timeline-year">1. 原料准备</div>
+                            <div class="timeline-content">精选钦江两岸的紫红陶土，经过筛选、淘洗、陈腐等工序，使陶土细腻纯净，具备良好的可塑性。</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2. 拉坯成型</div>
+                            <div class="timeline-content">将调配好的泥料放在陶轮上，通过双手控制陶轮转速和泥料形状，塑造成各种器型。</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">3. 雕刻装饰</div>
+                            <div class="timeline-content">在干燥的坯体上雕刻装饰，运用浮雕、透雕、线刻等多种技法，展现坭兴陶独特的艺术魅力。</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">4. 烧制</div>
+                            <div class="timeline-content">将雕刻好的坯体放入窑中，经过1100-1300℃高温烧制，产生独特的窑变效果，每件作品独一无二。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="works" class="section-page hidden">
+            <div class="container" style="padding-top: 100px;">
+                <h1 class="section-title">作品展示</h1>
+                
+                <div class="info-box" style="margin-bottom: 40px;">
+                    <h3>建模图</h3>
+                    <div class="grid-2">
+                        <img src="images/图片20.jpg" style="width:100%; height:300px; object-fit:cover; border-radius:8px;">
+                        <div style="padding-left:20px; display:flex; flex-direction:column; justify-content:center;">
+                            <p>图为创新坭兴陶茶具三维建模过程图，依托数字化设计软件搭建完整器型结构，精准还原壶身、中式十字盖钮等造型细节。标准化数字模型可快速调整尺寸、适配民族纹样库，省去传统手工反复打样流程，为后续材质渲染与模具制作奠定基础。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box" style="margin-bottom: 40px;">
+                    <h3>渲染图</h3>
+                    <div class="grid-2">
+                        <img src="images/图片21.jpg" style="width:100%; height:300px; object-fit:cover; border-radius:8px;">
+                        <div style="padding-left:20px; display:flex; flex-direction:column; justify-content:center;">
+                            <p>坭兴陶茶具系列数字化渲染效果图。依托前期三维建模成果，匹配坭兴陶特有泥质材质、光影环境完成可视化渲染，完整呈现多套创新茶具整体器型、线条结构与纹样布局。渲染效果可直观预判成品外观，快速优化造型设计。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box" style="margin-bottom: 40px;">
+                    <h3>实物图</h3>
+                    <div class="work-grid">
+                        <div class="work-card">
+                            <img src="images/图片22.jpeg" alt="花山系列">
+                            <div class="info">
+                                <div class="series">花山系列</div>
+                                <div class="title">《花山鼓壶》</div>
+                                <div class="award">荣获2019广西工艺美术作品旅游工艺品暨大师精品展览"八桂天工奖""银奖"，荣获2020年第55届全国工艺品交易会"金凤凰"创新产品设计大赛"优秀奖"</div>
+                            </div>
+                        </div>
+                        <div class="work-card">
+                            <img src="images/图片23.jpeg" alt="天琴系列">
+                            <div class="info">
+                                <div class="series">天琴系列</div>
+                                <div class="title">《天琴壶茶具套装》</div>
+                                <div class="award">荣获"城市伴手礼"2023年"广西有礼"特色旅游商品创意设计大赛（高校组）"金奖"</div>
+                            </div>
+                        </div>
+                        <div class="work-card">
+                            <img src="images/图片24.jpeg" alt="铜鼓系列">
+                            <div class="info">
+                                <div class="series">铜鼓系列</div>
+                                <div class="title">《铜鼓壶茶具套装》</div>
+                                <div class="award">荣获"文化生活板块"2023年"广西有礼"特色旅游商品创意设计大赛（高校组）"优秀奖"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3>包装图</h3>
+                    <img src="images/图片25.jpg" style="width:100%; height:300px; object-fit:cover; border-radius:8px; margin-bottom:15px;">
+                    <p>坭兴陶文创产品包装设计，融合广西民族文化元素，采用环保材质，既保护产品安全，又展现文化内涵，提升产品附加值与市场竞争力。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="logo" style="color: white; font-size: 20px;"><img src="images/图片1.png" style="height:30px; width:auto; margin-right:8px;">坭兴陶文创产品设计与开发</div>
+                    <p style="margin-top: 15px; color: rgba(245, 240, 230, 0.8); font-size: 14px;">
+                        本项目致力于坭兴陶非遗文化的传承与创新，通过数字化技术赋能传统手工艺，打造具有时代特色的文创产品。
+                    </p>
+                    <p style="color: rgba(245, 240, 230, 0.6); margin-top: 15px; font-size: 13px;">2026 坭兴陶文创产品设计与开发团队</p>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 16px;">快速链接</h3>
+                    <div class="footer-links">
+                        <a onclick="showSection('home')">首页</a>
+                        <a onclick="showSection('overview')">项目概述</a>
+                        <a onclick="showSection('achievements')">项目成果</a>
+                        <a onclick="showSection('patterns')">纹样创新</a>
+                        <a onclick="showSection('materials')">原料创新</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 16px;">联系我们</h3>
+                    <div style="display: flex; flex-direction: column; gap: 8px; font-size: 14px;">
+                        <span>📍 广西民族师范学院</span>
+                        <span>📞 19328201493</span>
+                        <span>✉️ 237011010236@qq.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
+        <button class="lightbox-nav lightbox-prev" onclick="prevImage()">‹</button>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="">
+        <button class="lightbox-nav lightbox-next" onclick="nextImage()">›</button>
     </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section-page').forEach(el => el.classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
+            document.querySelectorAll('.nav-links a').forEach(el => el.classList.remove('active'));
+            event.target.classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        function handleImageError(img) {
+            img.onerror = null;
+            img.style.display = 'none';
+            var placeholder = document.createElement('div');
+            placeholder.className = 'img-error';
+            placeholder.style.width = img.style.width || '100%';
+            placeholder.style.height = img.style.height || '200px';
+            placeholder.style.borderRadius = img.style.borderRadius || '8px';
+            img.parentNode.replaceChild(placeholder, img);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var images = document.querySelectorAll('img');
+            images.forEach(function(img) {
+                img.onerror = function() {
+                    handleImageError(img);
+                };
+                if (!img.src) {
+                    handleImageError(img);
+                }
+                if (img.classList.contains('logo') || img.parentElement.classList.contains('logo')) {
+                    return;
+                }
+                img.classList.add('image-preview');
+                img.onclick = function() {
+                    openLightbox(this.src);
+                };
+            });
+        });
+
+        var lightbox = document.getElementById('lightbox');
+        var lightboxImg = document.getElementById('lightbox-img');
+        var currentImages = [];
+        var currentIndex = 0;
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            currentImages = Array.from(document.querySelectorAll('.image-preview')).map(img => img.src);
+            currentIndex = currentImages.indexOf(src);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function prevImage() {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = currentImages.length - 1;
+            }
+            lightboxImg.src = currentImages[currentIndex];
+        }
+
+        function nextImage() {
+            if (currentIndex < currentImages.length - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;
+            }
+            lightboxImg.src = currentImages[currentIndex];
+        }
+
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        });
+
+        var currentTemp = 25;
+        var targetTemp = 25;
+        var currentRate = 5;
+        var currentMode = 'fire';
+        var animationFrame = null;
+
+        function initSliders() {
+            initSlider('tempSlider', 'tempTrack', 'tempThumb', 0, 1300, targetTemp, function(value) {
+                targetTemp = value;
+                document.getElementById('tempSet').textContent = value + '°C';
+                updateProgress();
+            });
+            initSlider('rateSlider', 'rateTrack', 'rateThumb', 1, 20, currentRate, function(value) {
+                currentRate = value;
+                document.getElementById('rateSet').textContent = value + '°C/min';
+            });
+        }
+
+        function initSlider(containerId, trackId, thumbId, min, max, initial, callback) {
+            var container = document.getElementById(containerId);
+            var track = document.getElementById(trackId);
+            var thumb = document.getElementById(thumbId);
+            var isDragging = false;
+
+            function updateSlider(clientX) {
+                var rect = container.getBoundingClientRect();
+                var x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+                var percentage = x / rect.width;
+                var value = Math.round(min + percentage * (max - min));
+                
+                track.style.width = percentage * 100 + '%';
+                thumb.style.left = x + 'px';
+                
+                if (callback) callback(value);
+            }
+
+            container.addEventListener('mousedown', function(e) {
+                isDragging = true;
+                updateSlider(e.clientX);
+            });
+
+            document.addEventListener('mousemove', function(e) {
+                if (isDragging) {
+                    updateSlider(e.clientX);
+                }
+            });
+
+            document.addEventListener('mouseup', function() {
+                isDragging = false;
+            });
+
+            container.addEventListener('touchstart', function(e) {
+                isDragging = true;
+                updateSlider(e.touches[0].clientX);
+            });
+
+            document.addEventListener('touchmove', function(e) {
+                if (isDragging) {
+                    updateSlider(e.touches[0].clientX);
+                }
+            });
+
+            document.addEventListener('touchend', function() {
+                isDragging = false;
+            });
+
+            var initialPercentage = (initial - min) / (max - min);
+            track.style.width = initialPercentage * 100 + '%';
+            thumb.style.left = initialPercentage * container.offsetWidth + 'px';
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            var statusDot = document.getElementById('statusDot');
+            var statusText = document.getElementById('statusText');
+
+            if (mode === 'preheat') {
+                targetTemp = 200;
+                statusText.textContent = '预热模式';
+                statusDot.className = 'status-dot working';
+            } else if (mode === 'fire') {
+                targetTemp = 1200;
+                statusText.textContent = '烧成模式';
+                statusDot.className = 'status-dot working';
+            } else if (mode === 'cool') {
+                targetTemp = 25;
+                statusText.textContent = '冷却模式';
+                statusDot.className = 'status-dot working';
+            }
+
+            document.getElementById('tempSet').textContent = targetTemp + '°C';
+            var slider = document.getElementById('tempSlider');
+            var track = document.getElementById('tempTrack');
+            var thumb = document.getElementById('tempThumb');
+            var percentage = targetTemp / 1300;
+            track.style.width = percentage * 100 + '%';
+            thumb.style.left = percentage * slider.offsetWidth + 'px';
+            updateProgress();
+        }
+
+        function updateProgress() {
+            var progress = (currentTemp / 1300) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        function animateTemp() {
+            var diff = targetTemp - currentTemp;
+            if (Math.abs(diff) < 1) {
+                currentTemp = targetTemp;
+            } else {
+                var step = (currentRate / 60) * (diff > 0 ? 1 : -1);
+                currentTemp += step;
+                currentTemp = Math.max(25, Math.min(1300, currentTemp));
+            }
+
+            document.getElementById('tempValue').textContent = Math.round(currentTemp);
+            updateProgress();
+
+            animationFrame = requestAnimationFrame(animateTemp);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initSliders();
+            animateTemp();
+        });
+    </script>
 </body>
 </html>
